@@ -1,18 +1,55 @@
-## Getting Started
+# Projeto Calculadora de Frete (Padrão Strategy)
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este projeto demonstra o uso do padrão Strategy em Java para calcular valores de frete com diferentes estratégias.
 
-## Folder Structure
+## Visão geral
 
-The workspace contains two folders by default, where:
+O projeto inclui três estratégias de exemplo implementadas em `src/Main.java`:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+- `Sedex` — multiplica o peso por 1.45 e soma ao valor do pedido.
+- `Pac` — multiplica o peso por 1.10 e soma ao valor do pedido.
+- `FreteGratis` — se o `valor` do pedido for maior que 200, retorna frete gratuito (0.0); caso contrário, imprime uma mensagem e aplica um cálculo fallback.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+O `Main` demonstra o uso de `FreteContext` para alternar entre estratégias em tempo de execução.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Requisitos
 
-## Dependency Management
+- JDK 8 ou superior (recomenda-se JDK 11+).
+- Ferramentas de linha de comando Java (`javac` e `java`) no PATH.
+- Windows — instruções abaixo estão adaptadas para PowerShell.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Como compilar e rodar (PowerShell)
+
+Abra o PowerShell na raiz do projeto (`e:\projeto calculadora de frete strategy\projetoCalculadoraFrete`) e execute:
+
+```powershell
+# Compilar
+javac -d out src\Main.java
+
+# Rodar
+java -cp out Main
+```
+
+Alternativa (compilar na pasta corrente):
+
+```powershell
+javac src\Main.java -d .
+java Main
+```
+
+## Exemplo de saída
+
+Ao executar `Main`, você deve ver algo parecido com:
+
+```
+Frete Sedex: 164.5
+Frete Pac: 160.0
+Frete Gratis: 0.0
+```
+
+Os valores podem variar conforme os parâmetros de peso/valor usados no `Main`.
+
+## Estrutura do projeto
+
+- `src/Main.java` — implementação do padrão Strategy e `main` de exemplo.
+- `lib/` — pasta para dependências (se houver).
